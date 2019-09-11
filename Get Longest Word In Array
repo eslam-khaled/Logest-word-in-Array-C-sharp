@@ -1,0 +1,34 @@
+        static void Main()
+        {
+            // declare size and longest word
+            int size;
+            string longestWord = "";
+            // ensure that size is an integer
+            do
+            {
+                Console.Write("How many names you will input ? ");
+            } while (!(int.TryParse(Console.ReadLine(), out size) && size > 0));
+            // declare the array of names
+            string[] names = new string[size];
+            // fill the array of names
+            for (int i = 0; i < names.Length; i++)
+            {
+                Console.Write("Enter name no. {0}: ", i + 1);
+                names[i] = Console.ReadLine();
+                // compare by length
+                if (names[i].Length > longestWord.Length)
+                {
+                    longestWord = names[i];
+                }
+                // compare alphabetically
+                else if (names[i].Length == longestWord.Length)
+                {
+                    if (names[i].CompareTo(longestWord) > 0)
+                        longestWord = names[i];
+                }
+            }
+            // get the index of longest word
+            int index = Array.IndexOf(names, longestWord);
+            // display the longest word and it's index
+            Console.WriteLine($"Longest Word is {longestWord} which exists in index {index}");
+        }
